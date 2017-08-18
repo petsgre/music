@@ -43,7 +43,7 @@ vue实例监听变化的数据，再通过music对象进行具体的dom操作。
 
 > 列表循环需要判断一下**上一首还是下一首**，具体代码如下：
 
-	play(e) {
+	play(e) { 
 	  var vm = this;
 	  var music = new Music();
 	  switch (vm.modelImg) {
