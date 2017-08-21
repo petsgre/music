@@ -4,7 +4,14 @@
 
 > [demo](https://www.166zx.com/ "demo")
 
+## 需要
+
+- vue ^2.3.3
+- vue-resource ^1.3.4
+- v-click-outside ^0.0.8
+
 ## 下载
+npm
 
 	npm install vue-music --save
 
@@ -41,60 +48,12 @@ vue实例监听变化的数据，再通过music对象进行具体的dom操作。
 
 > 单曲循环和随机播放比较容易，不需要判断方向，即是上一首还是下一首
 
-> 列表循环需要判断一下**上一首还是下一首**，具体代码如下：
-
-	play(e) { 
-	  var vm = this;
-	  var music = new Music();
-	  switch (vm.modelImg) {
-	    case 1: //单曲循环
-	      music.reload();
-	      break;
-	    case 2: //列表循环
-	      var list = vm.onlineLists;
-	      if (list.length > 0) { //判断是否有缓存列表
-	        //判断当前音乐在列表中的位置
-	        for (var x = 0; x < list.length; x++) {
-	          if (list[x].FileHash == vm.musicHash) {
-	            if (!e) { //往后下一首
-	              if (x !== list.length - 1) { //判断是否是列表最后一首
-	                vm.playOnline(list[x + 1])
-	              } else { //返回第一首
-	                vm.playOnline(list[0])
-	              }
-	            } else { //往前下一首
-	              if (x == 0) { //判断是否是列表第一首
-	                vm.playOnline(list[list.length - 1]) //返回列表最后一首
-	              } else {
-	                vm.playOnline(list[x - 1])
-	              }
-	            }
-	            return;
-	          }
-	        }
-	      } else {
-	        music.reload();
-	      }
-	      break;
-	    case 3: //随机播放
-	      var list = vm.onlineLists;
-	      if (list.length > 0) { //判断是否有缓存列表
-	        var num = Math.floor(Math.random() * list.length);
-	        vm.playOnline(list[num])
-	      } else {
-	        music.reload();
-	      }
-	      break;
-	  }
-	}
-
+> 列表循环需要判断一下**上一首还是下一首**
 
 
 - 实时进度
 
 这里采用监听html5的一个audio事件**timeupdate**来实时返回播放的进度，进度条使用input新属性range，通过v-model的双向绑定的特点，就可以实时修改range的播放进度
-
-	<input type="range" id="rangeLength" v-model="length" min="0" max="100" @input="changeLength()">
 
 - 播放时长
 
