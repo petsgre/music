@@ -21,7 +21,7 @@
       <div @click="changeModel(modelImg)" :data-index="modelImg" class="music-model" :style="{backgroundImage: 'url('+modelBase[modelImg-1].url+')'}"></div>
       <div class="music-list" @click.self.stop="listShow=!listShow,voiceShow=false">
       </div>
-      <div class="music-list-result" v-if="listShow" v-click-outside="listOutside">
+      <div class="music-list-result" v-if="listShow">
         <div class="music-search">
           <input v-model="musicName" type="text" placeholder="输入歌名回车搜索" @keyup.enter="musicSearch">
           <div v-if="searchShow" style="float:right;cursor:pointer;" @click="searchShow=false">取消</div>
@@ -285,10 +285,7 @@ export default {
     },
     voiceOutside(event) {
       var flag = this.bubbling(event);
-      this.voiceShow = flag;
-    },
-    listOutside(event) {
-      var flag = this.bubbling(event);
+      this.voiceShow = false;
       this.listShow = flag;
     }
   },
@@ -324,7 +321,7 @@ export default {
   watch: {
     //监听播放进度
     "length": function(val, oldVal) {
-      if (val > 99.8) {
+      if (val > 99) {
         this.play(true);
       }
     }
