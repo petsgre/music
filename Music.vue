@@ -205,7 +205,7 @@ export default {
     },
     addTempList(e) { //添加到播放列表
       var list = this.onlineLists;
-      list.push(e);
+      list.unshift(e);
       this.onlineLists = list;
       var music = new Music();
       music.modify(list);
