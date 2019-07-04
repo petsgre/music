@@ -1,7 +1,5 @@
 ## Web pages based on HTML 5 < audio > music player
 
-> ![效果图](https://www.166zx.com/static/img/music_ui.png)
-
 > [demo](https://www.166zx.com/ "demo")
 
 ## Requirements
@@ -77,3 +75,5 @@ detail to see play list tips
 - play list
 
 > play mode need to use play list,i save the list to localstorage(like Netease Cloud Music),if there is no one in list,it will play the music that named 'faded'(i like it,very rhythmical)
+
+### because my server is closed, the music api is not useful,i'm so sorry about that.
